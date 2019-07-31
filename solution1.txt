@@ -1,0 +1,4 @@
+1>ps -aux|grep gunicorn|awk '{print $2}'|xargs kill -9
+2>mysql -u root -p -e "SHOW FULL PROCESSLIST;"|awk '{print $3}'|sort -u
+3>for i in `grep "version" json|cut -d ':' -f2|cut -d ',' -f1`;do  if [ `echo $i|awk -F '\.' '{print NF-1}'` == 2 ];then echo $i; break;fi;done
+4>a=`awk '{ SUM += $1} END { print SUM }' cal.txt`; b=`cat cal.txt|wc -l`;echo "scale=2;($a/$b)" |bc -l
